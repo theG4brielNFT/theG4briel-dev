@@ -1,0 +1,146 @@
+name: CI
+
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+   
+#    - name: Request Block
+#      id: block
+#      uses: Satak/webrequest-action@v1.2.2
+#      with:
+#        url: https://api.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=${{ secrets.ETHERSCAN_KEY }}
+#        method: GET
+     
+#    - name: Parse
+#      id: parser
+#      run: |
+#        $output = '${{ steps.block.outputs.output }}' | ConvertFrom-Json
+#        Write-Host "Time from output $($output.time) statusCode $($output.statusCode) data $($output.data)"
+#      shell: pwsh
+  
+     - name: Setup Node
+       uses: actions/setup-node@v1
+       with:
+         node-version: '10.x'
+
+#    - name: Cache dependencies
+#      uses: actions/cache@v1
+#      with:
+#        path: ~/.npm
+#        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+#        restore-keys: |
+#          ${{ runner.os }}-node-
+          
+    - run: npm ci
+    
+    - run: npn run build
+
+#    - name: Build
+#      run: |
+#        $output = '${{ steps.block.outputs.output }}' | ConvertFrom-Json
+#        ($env:REACT_APP_BLOCK = "$($output.data.result)") -and (npm run build)
+#      shell: pwsh
+  
+#    - name: Upload to Swarm
+#      uses: aquiladev/swarm-action@v0.1.1
+#      id: swarm
+#      with:
+#        path: ./build
+#        verbose: true
+#    
+#    - name: Echo
+#      run: echo ${{ steps.swarm.outputs.hash }}
+#    
+#    - name: Update ENS
+#      uses: aquiladev/ddns-action@v0.1.2
+#      with:
+#        mnemonic: ${{ secrets.MNEMONIC }}
+#        rpc: ${{ secrets.RPC }}
+#        name: ddns-action.eth
+#        contentType: 'swarm-ns'
+#        contentHash: ${{ steps.swarm.outputs.hash }}
+#        dryrun: true
+#        verbose: true
+#    
+#    - name: Upload to Pinata
+#      uses: aquiladev/ipfs-action@v0.3.0-alpha.0
+#      id: pinata
+#      with:
+#        path: ./build
+#        service: pinata
+#        pinataKey: ${{ secrets.PINATA_KEY }}
+#        pinataSecret: ${{ secrets.PINATA_SECRET }}
+#        pinataPinName: dapps-delivery-guide
+#        verbose: true
+#
+#    - name: Echo
+#      run: echo ${{ steps.pinata.outputs.hash }}
+#    
+#    - name: Update ENS (Rinkeby)
+#      uses: aquiladev/ddns-action@v0.3.0
+#      with:
+#        mnemonic: ${{ secrets.RINKEBY_MNEMONIC }}
+#        rpc: ${{ secrets.RINKEBY_RPC }}
+#        name: ddns-action.eth
+#        contentType: 'ipfs-ns'
+#        contentHash: ${{ steps.pinata.outputs.hash }}
+#        dryrun: false
+#        verbose: true
+
+#    - name: Upload to Infura
+#      uses: aquiladev/ipfs-action@v0.3.0-alpha.1
+#      id: infura
+#      with:
+#        path: ./build
+#        service: infura
+#        infuraProjectId: ${{ secrets.INFURA_IPFS_PROJECT_ID }}
+#        infuraProjectSecret: ${{ secrets.INFURA_IPFS_PROJECT_SECRET }}
+#        timeout: 120000
+#        verbose: true
+
+#    - name: Echo
+#      run: echo ${{ steps.infura.outputs.hash }}
+
+#    - name: Upload to IPFS
+#      uses: aquiladev/ipfs-action@v0.3.0-alpha.1
+#      id: ipfs
+#      with:
+#        path: ./build
+#        key: 'dapps-delivery-guide'
+#        verbose: true
+#        timeout: 300000
+#
+#    - name: Echo
+#      run: echo ${{ steps.ipfs.outputs.hash }}
+
+#    - name: Update CNS (Rinkeby)
+#      uses: aquiladev/ddns-action@v0.3.0
+#      with:
+#        mnemonic: ${{ secrets.MNEMONIC }}
+#        rpc: ${{ secrets.RINKEBY_RPC }}
+#        name: ddns-action.crypto
+#        contentHash: ${{ steps.infura.outputs.hash }}
+#        dryrun: false
+#        verbose: true
+
+#    - name: Update UNS (Rinkeby)
+#      uses: aquiladev/ddns-action@v0.3.0
+#      with:
+#        mnemonic: ${{ secrets.MNEMONIC }}
+#        rpc: ${{ secrets.RINKEBY_RPC }}
+#        name: ddns-action.x
+#        contentHash: ${{ steps.infura.outputs.hash }}
+#        dryrun: false
+#        verbose: true
