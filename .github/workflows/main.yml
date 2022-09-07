@@ -7,14 +7,17 @@ on:
   pull_request:
     branches:
     - master
-
 jobs:
   build:
-    runs-on: ubuntu-latest
-
-
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Setup Node
+      uses: actions/setup-node@v1
+        with:
+        node-version: '10.x'
+      - run: npm ci
+      - run: npn run build
    
 #    - name: Request Block
 #      id: block
@@ -30,10 +33,10 @@ jobs:
 #        Write-Host "Time from output $($output.time) statusCode $($output.statusCode) data $($output.data)"
 #      shell: pwsh
   
-     - name: Setup Node
-       uses: actions/setup-node@v1
-       with:
-         node-version: '10.x'
+#     - name: Setup Node
+#       uses: actions/setup-node@v1
+#       with:
+#         node-version: '10.x'
 
 #    - name: Cache dependencies
 #      uses: actions/cache@v1
@@ -43,10 +46,7 @@ jobs:
 #        restore-keys: |
 #          ${{ runner.os }}-node-
           
-    - run: npm ci
-    
-    - run: npn run build
-
+#    - run: npm ci
 #    - name: Build
 #      run: |
 #        $output = '${{ steps.block.outputs.output }}' | ConvertFrom-Json
