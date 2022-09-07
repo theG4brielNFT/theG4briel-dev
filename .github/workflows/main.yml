@@ -12,12 +12,14 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
+    
     - name: Setup Node
       uses: actions/setup-node@v1
-        with:
+      with:
         node-version: '10.x'
-      - run: npm ci
-      - run: npn run build
+    
+    - run: npm ci
+    - run: npn run build
    
 #    - name: Request Block
 #      id: block
