@@ -1,1 +1,1 @@
-registry.npmjs.org/:_authToken=${G_NPM}
+//registry.npmjs.org/:_authToken=${G_NPM}
