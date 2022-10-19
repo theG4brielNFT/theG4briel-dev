@@ -9,7 +9,7 @@ on:
     - master
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     
@@ -19,7 +19,7 @@ jobs:
         node-version: '10.x'
     
     - run: npm ci
-    - run: npn run build
+    - run: npm run build
    
 #    - name: Request Block
 #      id: block
