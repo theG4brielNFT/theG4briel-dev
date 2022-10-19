@@ -19,6 +19,11 @@ jobs:
         node-version: '10.x'
     
     - run: npm ci
+    - name: Build
+      run: |
+       npm install
+      env:
+       G_NPM: ${{ secrets.G_NPM }}
 
    
 #    - name: Request Block
