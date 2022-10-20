@@ -13,12 +13,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - name: Request Block
-      id: block
-      uses: Satak/webrequest-action@v1.2.2
-      with:
-        url: https://api.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=${{ secrets.ETHERSCAN_KEY }}
-        method: GET
+#    - name: Request Block
+ #     id: block
+  #    uses: Satak/webrequest-action@v1.2.2
+  #    with:
+   #     url: https://api.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=${{ secrets.ETHERSCAN_KEY }}
+    #    method: GET
      
     - name: Parse
       id: parser
