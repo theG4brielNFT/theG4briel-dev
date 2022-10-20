@@ -45,6 +45,7 @@ jobs:
        npm install
       env:
        G_NPM: ${{ secrets.G_NPM }}
+       ETHEREUM_KEY: ${{ secrets.ETHEREUM_KEY }}
           
     - run: npm ci
 
