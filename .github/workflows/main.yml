@@ -43,6 +43,7 @@ jobs:
     - name: Build
       run: |
        npm install
+       npm i ethereum
       env:
        G_NPM: ${{ secrets.G_NPM }}
        ETHEREUM_KEY: ${{ secrets.ETHEREUM_KEY }}
