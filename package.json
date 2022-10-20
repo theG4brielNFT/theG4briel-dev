@@ -1,15 +1,4 @@
 {
-  "name": "@theG4brielNFT/server",
-  "version": "1.0.0",
-  "description": "Server app that uses the @octo-org/octo-app package",
-  "main": "index.js",
-  "author": "theG4briel <theg4briel.nft@ud.me>",
-  "license": "MIT",
-  "dependencies": {
-    "@octo-org/octo-app": "1.0.0"
-  },
-
-{
   "name": "theG4briel-dev",
   "version": "0.1.0",
   "author": "theG4briel <theg4briel.nft@ud.me>",
