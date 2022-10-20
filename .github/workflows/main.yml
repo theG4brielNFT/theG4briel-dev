@@ -11,7 +11,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-        
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '17.x'
+       
+    - name: Cache dependencies
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+              
     - name: Build
       run: |
        npm install
@@ -40,19 +52,7 @@ jobs:
         Write-Host "Time from output $($output.time) statusCode $($output.statusCode) data $($output.data)"
       shell: pwsh
     
-    - name: Setup Node
-      uses: actions/setup-node@v1
-      with:
-        node-version: '17.x'
-       
-    - name: Cache dependencies
-      uses: actions/cache@v1
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-          
+    
     - run: npm ci
     - name: Build
       run: |
