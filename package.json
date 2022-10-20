@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "author": "theG4briel <theg4briel.nft@ud.me>",
   "license": "MIT",
-  "homepage": "http://",
+  "homepage": "https://",
   "dependencies": {
     "minimist": "1.2.5",
     "react": "16.11.0",
