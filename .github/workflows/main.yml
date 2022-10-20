@@ -9,7 +9,7 @@ on:
     - master
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
     
@@ -30,7 +30,7 @@ jobs:
     - name: Setup Node
       uses: actions/setup-node@v1
       with:
-        node-version: '11.x'
+        node-version: '12.x'
        
     - name: Cache dependencies
       uses: actions/cache@v1
