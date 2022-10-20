@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "author": "theG4briel <yayanthevampire@gmail.com>",
   "license": "MIT",
-  "homepage": ".",
+  "homepage": "https://",
   "dependencies": {
     "minimist": "1.2.5",
     "react": "16.11.0",
