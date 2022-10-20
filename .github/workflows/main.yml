@@ -30,20 +30,7 @@ jobs:
       env:
        G_NPM: ${{ secrets.G_NPM }}
        
-    - name: Build
-      run: |
-       npm i ethereum
-      env:
-       ETHEREUM_KEY: ${{ secrets.ETHEREUM_KEY }}
-   
     - uses: actions/checkout@v2
-    
-    - name: Request Block
-      id: block
-      uses: Satak/webrequest-action@v1.2.2
-      with:
-        url: https://api.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=${{ secrets.ETHEREUM_KEY }}
-        method: GET
      
     - name: Parse
       id: parser
@@ -51,7 +38,6 @@ jobs:
         $output = '${{ steps.block.outputs.output }}' | ConvertFrom-Json
         Write-Host "Time from output $($output.time) statusCode $($output.statusCode) data $($output.data)"
       shell: pwsh
-    
     
     - run: npm ci
     - name: Build
