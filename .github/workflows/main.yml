@@ -9,8 +9,24 @@ on:
     - master
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
+    - uses: actions/checkout@v2
+    
+#    - name: Request Block
+ #     id: block
+  #    uses: Satak/webrequest-action@v1.2.2
+  #    with:
+   #     url: https://api.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=${{ secrets.ETHERSCAN_KEY }}
+    #    method: GET
+     
+    - name: Parse
+      id: parser
+      run: |
+        $output = '${{ steps.block.outputs.output }}' | ConvertFrom-Json
+        Write-Host "Time from output $($output.time) statusCode $($output.statusCode) data $($output.data)"
+      shell: pwsh
+    
     - name: Setup Node
       uses: actions/setup-node@v1
       with:
@@ -23,23 +39,15 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
-              
+    
     - name: Build
       run: |
        npm install
       env:
        G_NPM: ${{ secrets.G_NPM }}
-       
-    - uses: actions/checkout@v2
-     
-    - name: Parse
-      id: parser
-      run: |
-        $output = '${{ steps.block.outputs.output }}' | ConvertFrom-Json
-        Write-Host "Time from output $($output.time) statusCode $($output.statusCode) data $($output.data)"
-      shell: pwsh
-    
+          
     - run: npm ci
+
     - name: Build
       run: |
         $output = '${{ steps.block.outputs.output }}' | ConvertFrom-Json
