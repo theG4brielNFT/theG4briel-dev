@@ -30,7 +30,7 @@ jobs:
     - name: Setup Node
       uses: actions/setup-node@v3
       with:
-        node-version: '16.x'
+        node-version: '19.x'
        
     - name: Cache dependencies
       uses: actions/cache@v3
@@ -45,7 +45,8 @@ jobs:
        npm install
       env:
        G_NPM: ${{ secrets.G_NPM }}
-          
+    
+    - run: npm --version
     - run: npm ci
 
     - name: Build
