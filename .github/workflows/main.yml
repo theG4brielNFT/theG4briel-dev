@@ -34,7 +34,7 @@ jobs:
     
     - name: Build
       run: |
-       npm install -g 8
+       npm install -g
 
       env:
        G_NPM: ${{ secrets.G_NPM }}
