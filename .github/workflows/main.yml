@@ -55,10 +55,15 @@ jobs:
         url: https://api.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=${{ secrets.ETHEREUM_KEY }}
         method: GET
         
-    - name: Upload to Swarm
-      uses: aquiladev/swarm-action@v0.1.1
+    - name: Upload to Pinata
+      uses: aquiladev/ipfs-action@v0.3.0-alpha.0
+      id: pinata
       with:
         path: ./
+        service: pinata
+        pinataKey: ${{ secrets.PINATA_KEY }}
+        pinataSecret: ${{ secrets.PINATA_SECRET }}
+        pinataPinName: dapps-delivery-guide
         verbose: true
           
   #  - uses: aquiladev/ddns-action@v0.1.1
@@ -85,16 +90,6 @@ jobs:
 #        dryrun: true
 #        verbose: true
 #    
-#    - name: Upload to Pinata
-#      uses: aquiladev/ipfs-action@v0.3.0-alpha.0
-#      id: pinata
-#      with:
-#        path: ./build
-#        service: pinata
-#        pinataKey: ${{ secrets.PINATA_KEY }}
-#        pinataSecret: ${{ secrets.PINATA_SECRET }}
-#        pinataPinName: dapps-delivery-guide
-#        verbose: true
 #
 #    - name: Echo
 #      run: echo ${{ steps.pinata.outputs.hash }}
