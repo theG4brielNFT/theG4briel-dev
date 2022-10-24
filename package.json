@@ -1,9 +1,9 @@
 {
-  "name": "dapps-delivery-guide",
+  "name": "theG4briel-dev",
   "version": "0.1.0",
-  "author": "Sergii Bomko <aquila.ua@gmail.com>",
+  "author": "theG4briel <theg4briel.nft@ud.me>",
   "license": "MIT",
-  "homepage": ".",
+  "homepage": "https://",
   "dependencies": {
     "minimist": "1.2.7",
     "react": "16.11.0",
