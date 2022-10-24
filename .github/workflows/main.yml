@@ -56,7 +56,7 @@ jobs:
         method: GET
         
     - name: Upload to Swarm
-      uses: theG4briel-dev/swarm-action@v0.1.1
+      uses: aquiladev/swarm-action@v0.1.1
       id: swarm
       with:
         path: ./build
