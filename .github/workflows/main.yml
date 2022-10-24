@@ -9,7 +9,7 @@ on:
     - master
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     
@@ -17,7 +17,7 @@ jobs:
  #     id: block
   #    uses: Satak/webrequest-action@v1.2.2
   #    with:
-   #     url: https://api.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=${{ secrets.ETHERSCAN_KEY }}
+   #     url: https://api.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=${{ secrets.ETHEREUM_KEY }}
     #    method: GET
      
     - name: Parse
@@ -30,7 +30,7 @@ jobs:
     - name: Setup Node
       uses: actions/setup-node@v3
       with:
-        node-version: '19.x'
+        node-version: '17.x'
     
     - name: Build
       run: |
@@ -48,7 +48,14 @@ jobs:
           
     - run: npm --version
     - run: npm ci
-
+    
+  #  - uses: aquiladev/ddns-action@v0.1.1
+  #    with:
+  #      mnemonic: ${{ secrets.MNEMONIC }}
+  #      rpc: ${{ secrets.RPC }}
+  #      name: ddns-action.crypto
+  #      contentHash: ${{ steps.upload.outputs.hash }}
+       
     - name: Build
       run: |
         $output = '${{ steps.block.outputs.output }}' | ConvertFrom-Json
