@@ -5,11 +5,11 @@
   "license": "MIT",
   "homepage": "https://",
   "dependencies": {
-    "minimist": "1.2.5",
+    "minimist": "1.2.7",
     "react": "16.11.0",
     "react-dom": "16.11.0",
-    "react-scripts": "3.4.3",
-    "web3": "1.2.6"
+    "react-scripts": "5.0.1",
+    "web3": "1.8.0"
   },
   "scripts": {
     "start": "react-scripts start",
