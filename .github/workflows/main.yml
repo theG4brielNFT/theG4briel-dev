@@ -32,11 +32,11 @@ jobs:
       with:
         node-version: '17.x'
     
-    - name: Build
-      run: |
-       npm i npm
-      env:
-       G_NPM: ${{ secrets.G_NPM }}
+   # - name: Build
+   #   run: |
+   #    npm i npm
+   #   env:
+   #    G_NPM: ${{ secrets.G_NPM }}
        
     - name: Cache dependencies
       uses: actions/cache@v3
