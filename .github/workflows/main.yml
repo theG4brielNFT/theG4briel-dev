@@ -53,7 +53,7 @@ jobs:
   #    with:
   #      mnemonic: ${{ secrets.MNEMONIC }}
   #      rpc: ${{ secrets.RPC }}
-  #      name: ddns-action.crypto
+  #      name: theg4briel.crypto
   #      contentHash: ${{ steps.upload.outputs.hash }}
        
     - name: Build
