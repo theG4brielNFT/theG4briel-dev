@@ -61,7 +61,7 @@ jobs:
         mnemonic: ${{ secrets.MNEMONIC }}
         rpc: ${{ secrets.RPC }}
         name: theg4briel.crypto
-        #contentHash: ${{ steps.upload.outputs.hash }}
+        contentHash: ${{ steps.upload.outputs.hash }}
         
 #    - name: Upload to Pinata
 #      uses: aquiladev/ipfs-action@v0.3.0-alpha.0
