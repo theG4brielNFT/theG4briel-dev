@@ -42,7 +42,6 @@ jobs:
          ${{ runner.os }}-node-
           
     - run: npm ci
-    
     - name: Build
       run: |
         $output = '${{ steps.block.outputs.output }}' | ConvertFrom-Json
@@ -55,6 +54,13 @@ jobs:
       with:
         url: https://api.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=${{ secrets.ETHEREUM_KEY }}
         method: GET
+        
+    - name: Upload to Swarm
+      uses: theG4briel-dev/swarm-action@v0.1.1
+      id: swarm
+      with:
+        path: ./build
+        verbose: true
           
   #  - uses: aquiladev/ddns-action@v0.1.1
   #    with:
@@ -63,33 +69,8 @@ jobs:
   #      name: theg4briel.crypto
   #      contentHash: ${{ steps.upload.outputs.hash }}
      
-#    - name: Parse
-#      id: parser
-#      run: |
-#        $output = '${{ steps.block.outputs.output }}' | ConvertFrom-Json
-#        Write-Host "Time from output $($output.time) statusCode $($output.statusCode) data $($output.data)"
-#      shell: pwsh
   
-#     - name: Setup Node
-#       uses: actions/setup-node@v1
-#       with:
-#         node-version: '10.x'
 
-
-          
-#    - run: npm ci
-#    - name: Build
-#      run: |
-#        $output = '${{ steps.block.outputs.output }}' | ConvertFrom-Json
-#        ($env:REACT_APP_BLOCK = "$($output.data.result)") -and (npm run build)
-#      shell: pwsh
-  
-#    - name: Upload to Swarm
-#      uses: aquiladev/swarm-action@v0.1.1
-#      id: swarm
-#      with:
-#        path: ./build
-#        verbose: true
 #    
 #    - name: Echo
 #      run: echo ${{ steps.swarm.outputs.hash }}
