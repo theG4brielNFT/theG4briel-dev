@@ -24,6 +24,12 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '17.x'
+            
+    - name: Build
+      run: |
+       npm instal
+      env:
+       G_NPM: ${{ secrets.G_NPM }}
     
     - name: Cache dependencies
       uses: actions/cache@v3
@@ -34,12 +40,6 @@ jobs:
          ${{ runner.os }}-node-
           
     - run: npm ci
-        
-    - name: Build
-      run: |
-       npm instal
-      env:
-       G_NPM: ${{ secrets.G_NPM }}
     
     - name: Build
       run: |
