@@ -46,6 +46,8 @@ jobs:
         $output = '${{ steps.block.outputs.output }}' | ConvertFrom-Json
         ($env:REACT_APP_BLOCK = "$($output.data.result)") -and (npm run build)
       shell: pwsh
+      
+    - run: npm run build
           
   #  - uses: aquiladev/ddns-action@v0.1.1
   #    with:
