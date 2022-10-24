@@ -12,39 +12,40 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-   
-    - name: Setup Node
-      uses: actions/setup-node@v3
-      with:
-        node-version: '17.x'
-       
-    - name: Build
-      run: |
-        $output = '${{ steps.block.outputs.output }}' | ConvertFrom-Json
-        ($env:REACT_APP_BLOCK = "$($output.data.result)") -and (npm run build)
-      shell: pwsh
-   
+    
     - name: Parse
       id: parser
       run: |
         $output = '${{ steps.block.outputs.output }}' | ConvertFrom-Json
         Write-Host "Time from output $($output.time) statusCode $($output.statusCode) data $($output.data)"
       shell: pwsh
+   
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: '17.x'
     
     - name: Cache dependencies
       uses: actions/cache@v3
       with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
+       path: ~/.npm
+       key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+       restore-keys: |
+         ${{ runner.os }}-node-
           
-    - run: npm ci   
+    - run: npm ci 
+    
     - name: Build
       run: |
-       npm i npm
-      env:
-       G_NPM: ${{ secrets.G_NPM }}
+        $output = '${{ steps.block.outputs.output }}' | ConvertFrom-Json
+        ($env:REACT_APP_BLOCK = "$($output.data.result)") -and (npm run build)
+      shell: pwsh
+    
+  #  - name: Build
+  #    run: |
+  #     npm i npm
+  #    env:
+  #     G_NPM: ${{ secrets.G_NPM }}
           
   #  - uses: aquiladev/ddns-action@v0.1.1
   #    with:
