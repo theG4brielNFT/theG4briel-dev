@@ -38,6 +38,13 @@ jobs:
        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
        restore-keys: |
          ${{ runner.os }}-node-
+         
+    - name: Request Block
+      id: block
+      uses: Satak/webrequest-action@v1.2.2
+      with:
+        url: https://api.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=${{ secrets.ETHEREUM_KEY }}
+        method: GET
           
     - run: npm ci
     
@@ -46,13 +53,6 @@ jobs:
         $output = '${{ steps.block.outputs.output }}' | ConvertFrom-Json
         ($env:REACT_APP_BLOCK = "$($output.data.result)") -and (npm run build)
       shell: pwsh
-      
-    - name: Request Block
-      id: block
-      uses: Satak/webrequest-action@v1.2.2
-      with:
-        url: https://api.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=${{ secrets.ETHEREUM_KEY }}
-        method: GET
           
   #  - uses: aquiladev/ddns-action@v0.1.1
   #    with:
