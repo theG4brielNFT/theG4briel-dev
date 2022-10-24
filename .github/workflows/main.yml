@@ -33,19 +33,19 @@ jobs:
        restore-keys: |
          ${{ runner.os }}-node-
           
-    - run: npm ci 
+    - run: npm ci
+        
+    - name: Build
+      run: |
+       npm instal
+      env:
+       G_NPM: ${{ secrets.G_NPM }}
     
     - name: Build
       run: |
         $output = '${{ steps.block.outputs.output }}' | ConvertFrom-Json
         ($env:REACT_APP_BLOCK = "$($output.data.result)") -and (npm run build)
       shell: pwsh
-    
-    - name: Build
-      run: |
-       npm instal
-      env:
-       G_NPM: ${{ secrets.G_NPM }}
           
   #  - uses: aquiladev/ddns-action@v0.1.1
   #    with:
