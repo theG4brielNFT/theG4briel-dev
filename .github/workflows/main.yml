@@ -13,12 +13,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Request Block
-      id: block
-      uses: Satak/webrequest-action@v1.2.2
-      with:
-        url: https://api.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=${{ secrets.ETHEREUM_KEY }}
-        method: GET
+#    - name: Request Block
+#      id: block
+#      uses: Satak/webrequest-action@v1.2.2
+#      with:
+#        url: https://api.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=${{ secrets.ETHEREUM_KEY }}
+#        method: GET
      
     - name: Parse
       id: parser
@@ -46,7 +46,6 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-node-
           
-    - run: npm --version
     - run: npm ci
     
   #  - uses: aquiladev/ddns-action@v0.1.1
@@ -61,6 +60,8 @@ jobs:
         $output = '${{ steps.block.outputs.output }}' | ConvertFrom-Json
         ($env:REACT_APP_BLOCK = "$($output.data.result)") -and (npm run build)
       shell: pwsh
+      
+    
 
    
 #    - name: Request Block
