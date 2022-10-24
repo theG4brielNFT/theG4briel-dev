@@ -9,7 +9,8 @@
     "react": "16.11.0",
     "react-dom": "16.11.0",
     "react-scripts": "5.0.1",
-    "web3": "1.8.0"
+    "web3": "1.8.0",
+    "etherscan": "0.2.2"
   },
   "scripts": {
     "start": "react-scripts start",
