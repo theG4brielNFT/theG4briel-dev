@@ -17,13 +17,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '17.x'
-        
-    - run: npm ci   
-    - name: Build
-      run: |
-       npm i npm
-      env:
-       G_NPM: ${{ secrets.G_NPM }}
        
     - name: Build
       run: |
@@ -38,6 +31,13 @@ jobs:
         Write-Host "Time from output $($output.time) statusCode $($output.statusCode) data $($output.data)"
       shell: pwsh
     
+    - run: npm ci   
+    - name: Build
+      run: |
+       npm i npm
+      env:
+       G_NPM: ${{ secrets.G_NPM }}
+    
     - name: Cache dependencies
       uses: actions/cache@v3
       with:
@@ -45,7 +45,7 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
-    
+          
   #  - uses: aquiladev/ddns-action@v0.1.1
   #    with:
   #      mnemonic: ${{ secrets.MNEMONIC }}
