@@ -59,7 +59,7 @@ jobs:
       uses: aquiladev/swarm-action@v0.1.1
       id: swarm
       with:
-        path: ./
+        path: ./build
         verbose: true
           
   #  - uses: aquiladev/ddns-action@v0.1.1
