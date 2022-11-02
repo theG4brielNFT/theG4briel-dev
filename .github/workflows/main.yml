@@ -60,7 +60,7 @@ jobs:
       id: ipfs
       with:
         path: ./build
-        key: 'theG4briel-dev'
+        key: ${{ secret.IPFS_KEY }}
         verbose: true
         timeout: 300000
 
