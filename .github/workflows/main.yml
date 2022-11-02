@@ -59,7 +59,7 @@ jobs:
       uses: aquiladev/ipfs-action@v0.3.0-alpha.1
       id: ipfs
       with:
-        path: ./build
+        path: ./theG4briel-dev
         key: 'dapps-delivery-guide'
         verbose: true
         timeout: 300000
