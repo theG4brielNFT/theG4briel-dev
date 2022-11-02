@@ -54,17 +54,26 @@ jobs:
       with:
         url: https://api.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=${{ secrets.ETHEREUM_KEY }}
         method: GET
-        
+    
+    - name: Upload to IPFS
+      uses: aquiladev/ipfs-action@v0.3.0-alpha.1
+      id: ipfs
+      with:
+        path: ./build
+        key: 'dapps-delivery-guide'
+        verbose: true
+        timeout: 300000
+
     - name: Echo
       run: echo ${{ steps.ipfs.outputs.hash }}
    
-    - name: Update DDNS
-      uses: aquiladev/ddns-action@v0.3.0
-      with:
-        mnemonic: ${{ secrets.MNEMONIC }}
-        rpc: ${{ secrets.RPC }}
-        name: theg4briel.crypto
-        contentHash: ${{ steps.upload.outputs.hash }}
+ #   - name: Update DDNS
+ #     uses: aquiladev/ddns-action@v0.3.0
+ #     with:
+ #       mnemonic: ${{ secrets.MNEMONIC }}
+ #       rpc: ${{ secrets.RPC }}
+ #       name: theg4briel.crypto
+ #       contentHash: ${{ steps.upload.outputs.hash }}
         
 #    - name: Upload to Pinata
 #      uses: aquiladev/ipfs-action@v0.3.0-alpha.0
@@ -121,14 +130,7 @@ jobs:
 #    - name: Echo
 #      run: echo ${{ steps.infura.outputs.hash }}
 
-#    - name: Upload to IPFS
-#      uses: aquiladev/ipfs-action@v0.3.0-alpha.1
-#      id: ipfs
-#      with:
-#        path: ./build
-#        key: 'dapps-delivery-guide'
-#        verbose: true
-#        timeout: 300000
+#    
 #
 #    - name: Echo
 #      run: echo ${{ steps.ipfs.outputs.hash }}
