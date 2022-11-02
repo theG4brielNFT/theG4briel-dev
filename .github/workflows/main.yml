@@ -54,6 +54,10 @@ jobs:
       with:
         url: https://api.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=${{ secrets.ETHEREUM_KEY }}
         method: GET
+        
+    - name: Echo
+      run: echo ${{ steps.pinata.outputs.hash }}
+
     
 #    - name: Update DDNS
 #      uses: aquiladev/ddns-action@v0.3.0
